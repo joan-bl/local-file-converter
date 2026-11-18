@@ -1,0 +1,67 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Conversor local</title>
+  <meta name="description" content="Convierte imágenes, PDF, documentos, hojas de cálculo, audio y vídeo sin subirlos a ningún sitio. Todo pasa en tu navegador.">
+  <meta name="theme-color" content="#f2ede2">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' fill='%23f2ede2'/%3E%3Crect x='5' y='7' width='14' height='18' fill='%23ff48b0' opacity='.9'/%3E%3Crect x='12' y='4' width='14' height='18' fill='%230078bf' style='mix-blend-mode:multiply'/%3E%3C/svg%3E">
+</head>
+<body>
+  <header class="masthead">
+    <p class="kicker">Taller de conversión · nº 1</p>
+    <h1><span class="ink-a">Conversor</span> <span class="ink-b">local</span></h1>
+    <p class="tagline">Convierte tus archivos <b>sin subirlos a ningún sitio</b>. Imágenes, PDF, Word, Excel, audio y vídeo: todo se procesa aquí, dentro de tu navegador.</p>
+  </header>
+
+  <main>
+    <label id="drop" class="drop">
+      <input id="file" type="file" multiple>
+      <span class="drop-big">Suelta aquí tus archivos</span>
+      <span class="drop-small">o pulsa para elegirlos · también puedes pegar con Ctrl+V</span>
+    </label>
+
+    <div id="flash" class="flash" hidden></div>
+    <div id="toolbar" class="toolbar" hidden></div>
+    <ol id="list" class="tickets"></ol>
+
+    <details class="options">
+      <summary>Ajustes</summary>
+      <div class="opt-grid">
+        <label>Calidad JPG/WebP <output data-out="quality">90</output>
+          <input type="range" min="40" max="100" value="90" data-opt="quality"></label>
+        <label>Lado máximo de las imágenes (px, 0 = sin cambiar)
+          <input type="number" min="0" step="100" value="0" data-opt="maxSide"></label>
+        <label>Resolución al pasar PDF a imagen (ppp)
+          <select data-opt="dpi"><option>72</option><option selected>150</option><option>300</option></select></label>
+        <label>Ancho máximo del vídeo (px, 0 = original)
+          <input type="number" min="0" step="120" value="0" data-opt="maxWidth"></label>
+        <label>Calidad del MP3/M4A (kbps)
+          <select data-opt="audioBitrate"><option>128</option><option selected>192</option><option>256</option><option>320</option></select></label>
+      </div>
+    </details>
+
+    <section class="columns">
+      <article class="panel" id="privacy">
+        <h2>¿Cómo sé que no se sube nada?</h2>
+        <p>Las webs de conversión normales suben tu archivo a su servidor, lo convierten allí y te lo devuelven. Esta no tiene servidor: es una página estática que trae los programas de conversión (el lector de PDF, ffmpeg…) y los ejecuta en tu ordenador.</p>
+        <p>Compruébalo tú: este contador muestra <b>cada petición</b> que hace la página.</p>
+        <div id="meter" class="meter"></div>
+        <p class="small">O haz la prueba definitiva: con la página abierta, <b>desconecta internet</b> y convierte algo. Funciona igual.</p>
+        <p id="offline" class="small ok" hidden>✓ Instalado para usar sin conexión: la próxima vez abrirá aunque no tengas internet.</p>
+      </article>
+      <article class="panel">
+        <h2>Formatos</h2>
+        <div class="table-wrap"><table class="formats"><thead><tr><th></th><th>Lee</th><th>Crea</th></tr></thead><tbody id="formats"></tbody></table></div>
+        <p class="small muted">Además: unir varias imágenes en un PDF, unir varios PDF en uno y separar un PDF en páginas. Audio y vídeo usan ffmpeg (≈ 31 MB que se descargan la primera vez).</p>
+      </article>
+    </section>
+  </main>
+
+  <footer>
+    <p>Hecho con pdf.js, pdf-lib, mammoth, SheetJS, marked, turndown, docx y ffmpeg.wasm. Código abierto en <a href="https://github.com/joan-bl/local-file-converter">GitHub</a>.</p>
+  </footer>
+  <script type="module" src="/src/main.js"></script>
+</body>
+</html>
