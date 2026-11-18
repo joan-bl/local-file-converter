@@ -71,7 +71,8 @@ export function categoryOf(file) {
 export function outputsFor(file) {
   const cat = categoryOf(file);
   if (!cat) return [];
-  const ext = extOf(file.name).replace("jpeg", "jpg").replace("htm", "html").replace("markdown", "md");
+  const raw = extOf(file.name);
+  const ext = { jpeg: "jpg", htm: "html", markdown: "md", xlsm: "xlsx" }[raw] || raw;
   return CATEGORIES[cat].outputs.filter((o) => o !== ext);
 }
 

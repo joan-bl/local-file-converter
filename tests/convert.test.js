@@ -20,6 +20,9 @@ test("no ofrece convertir a su propio formato", () => {
   assert.ok(!outputsFor(f("a.jpeg")).includes("jpg"));
   assert.ok(!outputsFor(f("a.md")).includes("md"));
   assert.ok(outputsFor(f("a.md")).includes("docx"));
+  assert.ok(!outputsFor(f("a.html")).includes("html"));
+  assert.ok(!outputsFor(f("a.htm")).includes("html"));
+  assert.ok(!outputsFor(f("a.markdown")).includes("md"));
   assert.equal(defaultOutput(f("a.wav")), "mp3");
   assert.equal(defaultOutput(f("a.mp4")), "mp3");
   assert.equal(extOf("x.tar.GZ"), "gz");
